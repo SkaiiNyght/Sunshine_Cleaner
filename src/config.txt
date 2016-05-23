@@ -1,0 +1,40 @@
+{
+    "Dilution": 4,
+    "CheckValues":{
+        "B": 0.46,
+        "Ca": 3040,
+        "Cu": 1.6,
+        "Fe": 59.3,
+        "K": 438,
+        "Mg": 449,
+        "Mn": 53.8,
+        "Na": 12.1,
+        "S": 25.35,
+        "Zn": 4.31
+    }
+    "SulfurToSulfateModifier": 0.6666666,
+    "ConversionFactors":{
+        "B": "VALUE + 0.3",
+        "Ca": "(VALUE * 1.25) - 500",
+        "Cu": "VALUE * 1",
+        "Fe": "VALUE * 1.7",
+        "K": "VALUE * 1",
+        "Mg": "VALUE * 1",
+        "Mn": "VALUE * 1",
+        "Na": "VALUE * 1",
+        "S": "VALUE * 0.695",
+        "Zn": "VALUE * 0.85"
+    },
+    "ConversionMinimumsAfterDilutionFactor":{
+        "B": 0.32,
+        "Ca": 3100.0,
+        "Cu": 1.76,
+        "Fe": 32.0,
+        "K": 440.0,
+        "Mg": 460.0,
+        "Mn": 70.0,
+        "Na": 8.0,
+        "S": 42,
+        "Zn": 5.2
+    }
+}
