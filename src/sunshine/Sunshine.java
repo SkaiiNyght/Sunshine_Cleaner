@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 /**
  *
  * @author Zach Larson
- * @version 1.0
+ * @version 1.01
  * 
  * This program has two abilities.
  *  1. Take in a xls file (raw), and output a csv file (pre-cleaned)

@@ -1,4 +1,11 @@
 {
+    "Correct Column Names":{
+        "Dilution":"Dilution",
+        "CheckValues":"CheckValues",
+        "SulfurToSulfateModifier":"SulfurToSulfateModifier",
+        "ConversionFactors":"ConversionFactors",
+        "ConversionMinimumsAfterDilutionFactor":"ConversionMinimumsAfterDilutionFactor"
+    },
     "Dilution": 4,
     "CheckValues":{
         "B": 0.46,

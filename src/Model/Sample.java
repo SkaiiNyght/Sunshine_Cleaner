@@ -64,6 +64,12 @@ public class Sample {
         this.s = converter.convertS(Double.parseDouble(replaceLetters(lineParts[index.getsColumn()])) * dilutionFactor);
         this.zn = converter.convertZn(Double.parseDouble(replaceLetters(lineParts[index.getZnColumn()])) * dilutionFactor);
         this.containerID = removeQuotes(lineParts[index.getContainerIDColumn()]);
+        
+        if(this.b == -1 || this.ca == -1 || this.cu == -1 || this.fe == -1 || this.k == -1
+                || this.mg == -1 || this.mn == -1 || this.na == -1 || this.s == -1
+                || this.zn == -1){
+            System.exit(0);
+        }
     }
     
     /**
