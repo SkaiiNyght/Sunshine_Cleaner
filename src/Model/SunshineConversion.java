@@ -2,6 +2,7 @@ package Model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.SimpleBindings;
@@ -13,36 +14,15 @@ import javax.script.SimpleBindings;
 public class SunshineConversion {
 
     ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
-    private final String bConversion;
-    private final String caConversion;
-    private final String cuConversion;
-    private final String feConversion;
-    private final String kConversion;
-    private final String mgConversion;
-    private final String mnConversion;
-    private final String naConversion;
-    private final String sConversion;
-    private final String znConversion;
-    private final Map<String, Double> conversionMinimums;
+    private final Properties properties;
 
     /**
      * Constructor for the SunshineConversion
      *
-     * @param conversionMinimums The minimums to apply any conversion on
-     * @param conversionEquations The equations for the conversions
+     * @param properties The properties from the configuration file
      */
-    public SunshineConversion(Map<String, Double> conversionMinimums, Map<String, String> conversionEquations) {
-        this.conversionMinimums = conversionMinimums;
-        bConversion = conversionEquations.get("B");
-        caConversion = conversionEquations.get("Ca");
-        cuConversion = conversionEquations.get("Cu");
-        feConversion = conversionEquations.get("Fe");
-        kConversion = conversionEquations.get("K");
-        mgConversion = conversionEquations.get("Mg");
-        mnConversion = conversionEquations.get("Mn");
-        naConversion = conversionEquations.get("Na");
-        sConversion = conversionEquations.get("S");
-        znConversion = conversionEquations.get("Zn");
+    public SunshineConversion(Properties properties) {
+        this.properties = properties;
     }
 
     /**
@@ -65,17 +45,18 @@ public class SunshineConversion {
      * @param testName the name of the element (testName)
      * @return a converted Double
      */
-    private double calculate(Double value, String equation, String testName) {
+    private double calculate(Double value, String testName) {
         try {
-
+            String minimum = "conversionMinimum" + testName;
+            String equation = "conversionEquation" + testName;
             /*====================
             Determine if the conversion needs to be done based on the minimum
             converion value.
             ====================*/
-            if (value <= conversionMinimums.get(testName)) {
+            if (value <= Double.parseDouble(properties.getProperty(minimum))) {
                 return value;
             }
-            return (Double) engine.eval(equation, new SimpleBindings(getVariableMap(value)));
+            return (Double) engine.eval(properties.getProperty(equation), new SimpleBindings(getVariableMap(value)));
         } catch (Exception ex) {
             String message = "A problem occured during the value conversion "
                     + "(SunshineConversion (calculate(Double value, String equation, String testName)) \n";
@@ -92,7 +73,7 @@ public class SunshineConversion {
      * @return Double
      */
     public Double convertB(Double value) {
-        return calculate(value, bConversion, "B");
+        return calculate(value, "B");
     }
 
     /**
@@ -102,7 +83,7 @@ public class SunshineConversion {
      * @return Double
      */
     public Double convertCa(Double value) {
-        return calculate(value, caConversion, "Ca");
+        return calculate(value, "Ca");
     }
 
     /**
@@ -112,7 +93,7 @@ public class SunshineConversion {
      * @return Double
      */
     public Double convertCu(Double value) {
-        return calculate(value, cuConversion, "Cu");
+        return calculate(value, "Cu");
     }
 
     /**
@@ -122,7 +103,7 @@ public class SunshineConversion {
      * @return Double
      */
     public Double convertFe(Double value) {
-        return calculate(value, feConversion, "Fe");
+        return calculate(value, "Fe");
     }
 
     /**
@@ -132,7 +113,7 @@ public class SunshineConversion {
      * @return Double
      */
     public Double convertK(Double value) {
-        return calculate(value, kConversion, "K");
+        return calculate(value, "K");
     }
 
     /**
@@ -142,7 +123,7 @@ public class SunshineConversion {
      * @return Double
      */
     public Double convertMg(Double value) {
-        return calculate(value, mgConversion, "Mg");
+        return calculate(value, "Mg");
     }
 
     /**
@@ -152,7 +133,7 @@ public class SunshineConversion {
      * @return Double
      */
     public Double convertMn(Double value) {
-        return calculate(value, mnConversion, "Mn");
+        return calculate(value, "Mn");
     }
 
     /**
@@ -162,7 +143,7 @@ public class SunshineConversion {
      * @return Double
      */
     public Double convertNa(Double value) {
-        return calculate(value, naConversion, "Na");
+        return calculate(value, "Na");
     }
 
     /**
@@ -172,7 +153,7 @@ public class SunshineConversion {
      * @return Double
      */
     public Double convertS(Double value) {
-        return calculate(value, sConversion, "S");
+        return calculate(value, "S");
     }
 
     /**
@@ -182,7 +163,7 @@ public class SunshineConversion {
      * @return Double
      */
     public Double convertZn(Double value) {
-        return calculate(value, znConversion, "Zn");
+        return calculate(value, "Zn");
     }
 
 }

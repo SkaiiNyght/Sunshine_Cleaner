@@ -46,7 +46,7 @@ public class XLSToCSV {
         } catch (Exception ex) {
             String message = "There was an error converting the .xls file to a "
                     + "CSV file. (XLStoCSV convertXLSToCSV(File xls)) \n";
-            Message.displayError("Parsing .xls file", message + ex.getMessage());;
+            Message.displayError("Parsing .xls file", message + ex.toString());;
         }
         return null;
     }

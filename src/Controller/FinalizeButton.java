@@ -1,7 +1,7 @@
 package Controller;
 
 import CSV.CSV;
-import Config.JSONReader;
+import Config.PropertyWorker;
 import Model.Check;
 import Model.FinalizeIndexer;
 import Model.MasterCheck;
@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 import javafx.stage.FileChooser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -33,11 +34,14 @@ public class FinalizeButton {
      * @throws ParseException 
      */
     public static void onClick() throws IOException, ParseException{
-        /*====================
-        jsonObjects indexes: 0 - Dilution Factor, 1 - MasterCheck, 
-        2 - Conversion Minimums, 3 - Conversion Equations
-        ====================*/
-        Object[] jsonObjects = JSONReader.getJSONObjects();
+        PropertyWorker propWorker = null;
+        try{
+            propWorker = new PropertyWorker();
+        }catch(IOException ioe){
+            Message.Message.displayError("Closing Config File", "An Error occurred"
+                    + " when attempting to close the configuration file.\n" + ioe.getMessage());
+            System.exit(0);
+        }
         File fileToOpen = openFile();
         
         SampleAndCheck samples = null;
@@ -48,11 +52,9 @@ public class FinalizeButton {
                     + "(FinalizeButton (paseCSV(File fileToOpen)) \n";
             Message.Message.displayError("Parsing input csv", message + ex.getMessage());
         }
-        MasterCheck masterCheck = buildConversionFactors(samples, (MasterCheck) jsonObjects[1]);
+        MasterCheck masterCheck = buildConversionFactors(samples, propWorker.getProperties());
         samples = alterSamples(samples, masterCheck);
-        JSONParser parser = new JSONParser();
-        JSONObject root = (JSONObject) parser.parse(new FileReader("./src/config.txt"));
-        String outputCSV = CSV.buildFinalizedCSV(samples, Double.parseDouble(String.valueOf(root.get("SulfurToSulfateModifier"))));
+        String outputCSV = CSV.buildFinalizedCSV(samples, Double.parseDouble(propWorker.getProperties().getProperty("sulfurToSulfate")));
         saveFile(outputCSV);
     }
     /**
@@ -124,7 +126,8 @@ public class FinalizeButton {
      * @param masterCheck the MasterCheck with newly calculated correction multipliers.
      * @return 
      */
-    private static MasterCheck buildConversionFactors(SampleAndCheck samples, MasterCheck masterCheck) {
+    private static MasterCheck buildConversionFactors(SampleAndCheck samples, Properties properties) {
+        MasterCheck masterCheck = new MasterCheck(properties);
         for (Check c : samples.getChecks()) {
             masterCheck.increaseTotal("B", c.getB());
             masterCheck.increaseTotal("Ca", c.getCa());

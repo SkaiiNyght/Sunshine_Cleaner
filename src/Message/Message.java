@@ -19,7 +19,7 @@ public class Message {
         Stage window = new Stage();
         
         window.setTitle("ERROR: " + header);
-        window.setWidth(250);
+        window.setWidth(1000);
         
         Label label = new Label(content);
         GridPane.setConstraints(label, 0, 0);

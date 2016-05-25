@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -14,7 +15,7 @@ import javafx.stage.Stage;
 /**
  *
  * @author Zach Larson
- * @version 1.01
+ * @version 1.02
  * 
  * This program has two abilities.
  *  1. Take in a xls file (raw), and output a csv file (pre-cleaned)
@@ -53,7 +54,7 @@ public class Sunshine extends Application {
         Pane finalizeWrapper = new Pane();
         finalizeWrapper.setMinWidth(150);
         finalizeWrapper.setMinHeight(75);
-        GridPane.setConstraints(finalizeWrapper, 1, 0);
+        GridPane.setConstraints(finalizeWrapper, 2, 0);
         Button finalizeButton = new Button("Finalize");
         finalizeButton.setLayoutX(50);
         finalizeButton.setLayoutY(28);
@@ -67,18 +68,43 @@ public class Sunshine extends Application {
            
         });
         
+        /*====================
+        Configuration Wrapper And Button
+        ====================*/
+        Pane configurationWrapper = new Pane();
+        configurationWrapper.setMinWidth(150);
+        configurationWrapper.setMinHeight(75);
+        GridPane.setConstraints(configurationWrapper, 1, 0);
+        Button configurationButton = new Button("Configurations");
+        configurationButton.setLayoutX(50);
+        configurationButton.setLayoutY(28);
+        configurationButton.setPadding(new Insets(5,5,5,5));
+        configurationButton.setOnAction(event -> {
+            try{
+                Config tmp = new Config();
+                tmp = null;
+            }
+            catch(Exception ex){
+                Message.Message.displayError("Unknown Error",
+                        "An unkown error has occured. \n" + ex.getMessage());
+                System.exit(0);
+            }
+        });
+        
         /*============================
         Add Items to their wrappers
         ============================*/
         precleanWrapper.getChildren().addAll(precleanButton);
         finalizeWrapper.getChildren().addAll(finalizeButton);
-        innerWrapper.getChildren().addAll(precleanWrapper, finalizeWrapper);
+        configurationWrapper.getChildren().addAll(configurationButton);
+        innerWrapper.getChildren().addAll(precleanWrapper, finalizeWrapper, configurationWrapper);
         outerWrapper.getChildren().addAll(innerWrapper);
         
         /*============================
         Add Scene and display
         ============================*/
         Scene scene = new Scene(outerWrapper);
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("sunshine.png")));
         primaryStage.setScene(scene);
         primaryStage.setTitle("Sunshine");
         primaryStage.setResizable(Boolean.FALSE);

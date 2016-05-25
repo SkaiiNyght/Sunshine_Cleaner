@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Properties;
+
 /**
  *
  * @author Zach Larson
@@ -55,6 +57,20 @@ public class MasterCheck {
     private double sMultiplier;
     private double znMultiplier;
 
+    
+    public MasterCheck(Properties properties){
+        this.bMaster = Double.parseDouble(properties.getProperty("masterCheckB"));
+        this.caMaster = Double.parseDouble(properties.getProperty("masterCheckCa"));
+        this.cuMaster = Double.parseDouble(properties.getProperty("masterCheckCu"));
+        this.feMaster = Double.parseDouble(properties.getProperty("masterCheckFe"));
+        this.kMaster = Double.parseDouble(properties.getProperty("masterCheckK"));
+        this.mgMaster = Double.parseDouble(properties.getProperty("masterCheckMg"));
+        this.mnMaster = Double.parseDouble(properties.getProperty("masterCheckMn"));
+        this.naMaster = Double.parseDouble(properties.getProperty("masterCheckNa"));
+        this.sMaster = Double.parseDouble(properties.getProperty("masterCheckS"));
+        this.znMaster = Double.parseDouble(properties.getProperty("masterCheckZn"));
+    }
+    
     /**
      * Calculates the multiplier needed for each element based upon the master
      * value divided by the average.
