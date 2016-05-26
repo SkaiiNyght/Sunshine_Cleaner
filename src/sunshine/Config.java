@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sunshine;
 
 import Config.PropertyWorker;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.Properties;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -23,44 +15,55 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Ag User
+ * @author Zach Larson
  */
 public class Config {
 
-    private TextField txtBoronMinimum;
-    private TextField txtBoronEquation;
-    private TextField txtCalciumMinimum;
-    private TextField txtCalciumEquation;
-    private TextField txtCopperMinimum;
-    private TextField txtCopperEquation;
-    private TextField txtIronMinimum;
-    private TextField txtIronEquation;
-    private TextField txtPotassiumMinimum;
-    private TextField txtPotassiumEquation;
-    private TextField txtMagnesiumMinimum;
-    private TextField txtMagnesiumEquation;
-    private TextField txtManganeseMinimum;
-    private TextField txtManganeseEquation;
-    private TextField txtSodiumMinimum;
-    private TextField txtSodiumEquation;
-    private TextField txtSulfurMinimum;
-    private TextField txtSulfurEquation;
-    private TextField txtZincMinimum;
-    private TextField txtZincEquation;
-    private TextField txtDilutionFactor;
-    private TextField txtSulfurToSulfateMultiplier;
-    private TextField txtBCheckValue;
-    private TextField txtCaCheckValue;
-    private TextField txtCuCheckValue;
-    private TextField txtFeCheckValue;
-    private TextField txtKCheckValue;
-    private TextField txtMgCheckValue;
-    private TextField txtMnCheckValue;
-    private TextField txtNaCheckValue;
-    private TextField txtSCheckValue;
-    private TextField txtZnCheckValue;
+    //Conversion Equations
+    private TextField txtConversionEquationB;
+    private TextField txtConversionEquationCa;
+    private TextField txtConversionEquationCu;
+    private TextField txtConversionEquationFe;
+    private TextField txtConversionEquationK;
+    private TextField txtConversionEquationMg;
+    private TextField txtConversionEquationMn;
+    private TextField txtConversionEquationNa;
+    private TextField txtConversionEquationS;
+    private TextField txtConversionEquationZn;
+    
+    //Conversion Minimums
+    private TextField txtConversionMinimumB;
+    private TextField txtConversionMinimumCa;
+    private TextField txtConversionMinimumCu;
+    private TextField txtConversionMinimumFe;
+    private TextField txtConversionMinimumK;
+    private TextField txtConversionMinimumMg;
+    private TextField txtConversionMinimumMn;
+    private TextField txtConversionMinimumNa;
+    private TextField txtConversionMinimumS;
+    private TextField txtConversionMinimumZn;
+    
+    //Master Check Values
+    private TextField txtMasterCheckB;
+    private TextField txtMasterCheckCa;
+    private TextField txtMasterCheckCu;
+    private TextField txtMasterCheckFe;
+    private TextField txtMasterCheckK;
+    private TextField txtMasterCheckMg;
+    private TextField txtMasterCheckMn;
+    private TextField txtMasterCheckNa;
+    private TextField txtMasterCheckS;
+    private TextField txtMasterCheckZn;
+    
+    //PropertyWorker
     private PropertyWorker propWorker;
-
+    
+    //SulfurToSulfate
+    private TextField txtSulfurToSulfate;
+    
+    //Dilution Factor
+    private TextField txtDilutionFactor;
+    
     public Config() {
         displayConfigurations();
     }
@@ -112,36 +115,36 @@ public class Config {
         /*====================
         GridPane #1 TextFields
         ====================*/
-        txtBoronMinimum = new TextField(props.getProperty("conversionMinimumB"));
-        txtBoronEquation = new TextField(props.getProperty("conversionEquationB"));
-        txtBCheckValue = new TextField(props.getProperty("masterCheckB"));
-        txtCalciumMinimum = new TextField(props.getProperty("conversionMinimumCa"));
-        txtCalciumEquation = new TextField(props.getProperty("conversionEquationCa"));
-        txtCaCheckValue = new TextField(props.getProperty("masterCheckCa"));
-        txtCopperMinimum = new TextField(props.getProperty("conversionMinimumCu"));
-        txtCopperEquation = new TextField(props.getProperty("conversionEquationCu"));
-        txtCuCheckValue = new TextField(props.getProperty("masterCheckCu"));
-        txtIronMinimum = new TextField(props.getProperty("conversionMinimumFe"));
-        txtIronEquation = new TextField(props.getProperty("conversionEquationFe"));
-        txtFeCheckValue = new TextField(props.getProperty("masterCheckFe"));
-        txtPotassiumMinimum = new TextField(props.getProperty("conversionMinimumK"));
-        txtPotassiumEquation = new TextField(props.getProperty("conversionEquationK"));
-        txtKCheckValue = new TextField(props.getProperty("masterCheckK"));
-        txtMagnesiumMinimum = new TextField(props.getProperty("conversionMinimumMg"));
-        txtMagnesiumEquation = new TextField(props.getProperty("conversionEquationMg"));
-        txtMgCheckValue = new TextField(props.getProperty("masterCheckMg"));
-        txtManganeseMinimum = new TextField(props.getProperty("conversionMinimumMn"));
-        txtManganeseEquation = new TextField(props.getProperty("conversionEquationMn"));
-        txtMnCheckValue = new TextField(props.getProperty("masterCheckMn"));
-        txtSodiumMinimum = new TextField(props.getProperty("conversionMinimumNa"));
-        txtSodiumEquation = new TextField(props.getProperty("conversionEquationNa"));
-        txtNaCheckValue = new TextField(props.getProperty("masterCheckNa"));
-        txtSulfurMinimum = new TextField(props.getProperty("conversionMinimumS"));
-        txtSulfurEquation = new TextField(props.getProperty("conversionEquationS"));
-        txtSCheckValue = new TextField(props.getProperty("masterCheckS"));
-        txtZincMinimum = new TextField(props.getProperty("conversionMinimumZn"));
-        txtZincEquation = new TextField(props.getProperty("conversionEquationZn"));
-        txtZnCheckValue = new TextField(props.getProperty("masterCheckZn"));
+        txtConversionMinimumB = new TextField(props.getProperty("conversionMinimumB"));
+        txtConversionEquationB = new TextField(props.getProperty("conversionEquationB"));
+        txtMasterCheckB = new TextField(props.getProperty("masterCheckB"));
+        txtConversionMinimumCa = new TextField(props.getProperty("conversionMinimumCa"));
+        txtConversionEquationCa = new TextField(props.getProperty("conversionEquationCa"));
+        txtMasterCheckCa = new TextField(props.getProperty("masterCheckCa"));
+        txtConversionMinimumCu = new TextField(props.getProperty("conversionMinimumCu"));
+        txtConversionEquationCu = new TextField(props.getProperty("conversionEquationCu"));
+        txtMasterCheckCu = new TextField(props.getProperty("masterCheckCu"));
+        txtConversionMinimumFe = new TextField(props.getProperty("conversionMinimumFe"));
+        txtConversionEquationFe = new TextField(props.getProperty("conversionEquationFe"));
+        txtMasterCheckFe = new TextField(props.getProperty("masterCheckFe"));
+        txtConversionMinimumK = new TextField(props.getProperty("conversionMinimumK"));
+        txtConversionEquationK = new TextField(props.getProperty("conversionEquationK"));
+        txtMasterCheckK = new TextField(props.getProperty("masterCheckK"));
+        txtConversionMinimumMg = new TextField(props.getProperty("conversionMinimumMg"));
+        txtConversionEquationMg = new TextField(props.getProperty("conversionEquationMg"));
+        txtMasterCheckMg = new TextField(props.getProperty("masterCheckMg"));
+        txtConversionMinimumMn = new TextField(props.getProperty("conversionMinimumMn"));
+        txtConversionEquationMn = new TextField(props.getProperty("conversionEquationMn"));
+        txtMasterCheckMn = new TextField(props.getProperty("masterCheckMn"));
+        txtConversionMinimumNa = new TextField(props.getProperty("conversionMinimumNa"));
+        txtConversionEquationNa = new TextField(props.getProperty("conversionEquationNa"));
+        txtMasterCheckNa = new TextField(props.getProperty("masterCheckNa"));
+        txtConversionMinimumS = new TextField(props.getProperty("conversionMinimumS"));
+        txtConversionEquationS = new TextField(props.getProperty("conversionEquationS"));
+        txtMasterCheckS = new TextField(props.getProperty("masterCheckS"));
+        txtConversionMinimumZn = new TextField(props.getProperty("conversionMinimumZn"));
+        txtConversionEquationZn = new TextField(props.getProperty("conversionEquationZn"));
+        txtMasterCheckZn = new TextField(props.getProperty("masterCheckZn"));
 
         /*====================
         Assign grid indexes for GridPane #1 items
@@ -151,59 +154,59 @@ public class Config {
         GridPane.setConstraints(lblConversionEquations, 2, 0);
         GridPane.setConstraints(lblCheckValues, 3, 0);
         GridPane.setConstraints(lblBoron, 0, 1);
-        GridPane.setConstraints(txtBoronMinimum, 1, 1);
-        GridPane.setConstraints(txtBoronEquation, 2, 1);
-        GridPane.setConstraints(txtBCheckValue, 3, 1);
+        GridPane.setConstraints(txtConversionMinimumB, 1, 1);
+        GridPane.setConstraints(txtConversionEquationB, 2, 1);
+        GridPane.setConstraints(txtMasterCheckB, 3, 1);
         GridPane.setConstraints(lblCalcium, 0, 2);
-        GridPane.setConstraints(txtCalciumMinimum, 1, 2);
-        GridPane.setConstraints(txtCalciumEquation, 2, 2);
-        GridPane.setConstraints(txtCaCheckValue, 3, 2);
+        GridPane.setConstraints(txtConversionMinimumCa, 1, 2);
+        GridPane.setConstraints(txtConversionEquationCa, 2, 2);
+        GridPane.setConstraints(txtMasterCheckCa, 3, 2);
         GridPane.setConstraints(lblCopper, 0, 3);
-        GridPane.setConstraints(txtCopperMinimum, 1, 3);
-        GridPane.setConstraints(txtCopperEquation, 2, 3);
-        GridPane.setConstraints(txtCuCheckValue, 3, 3);
+        GridPane.setConstraints(txtConversionMinimumCu, 1, 3);
+        GridPane.setConstraints(txtConversionEquationCu, 2, 3);
+        GridPane.setConstraints(txtMasterCheckCu, 3, 3);
         GridPane.setConstraints(lblIron, 0, 4);
-        GridPane.setConstraints(txtIronMinimum, 1, 4);
-        GridPane.setConstraints(txtIronEquation, 2, 4);
-        GridPane.setConstraints(txtFeCheckValue, 3, 4);
+        GridPane.setConstraints(txtConversionMinimumFe, 1, 4);
+        GridPane.setConstraints(txtConversionEquationFe, 2, 4);
+        GridPane.setConstraints(txtMasterCheckFe, 3, 4);
         GridPane.setConstraints(lblPotassium, 0, 5);
-        GridPane.setConstraints(txtPotassiumMinimum, 1, 5);
-        GridPane.setConstraints(txtPotassiumEquation, 2, 5);
-        GridPane.setConstraints(txtKCheckValue, 3, 5);
+        GridPane.setConstraints(txtConversionMinimumK, 1, 5);
+        GridPane.setConstraints(txtConversionEquationK, 2, 5);
+        GridPane.setConstraints(txtMasterCheckK, 3, 5);
         GridPane.setConstraints(lblMagnesium, 0, 6);
-        GridPane.setConstraints(txtMagnesiumMinimum, 1, 6);
-        GridPane.setConstraints(txtMagnesiumEquation, 2, 6);
-        GridPane.setConstraints(txtMgCheckValue, 3, 6);
+        GridPane.setConstraints(txtConversionMinimumMg, 1, 6);
+        GridPane.setConstraints(txtConversionEquationMg, 2, 6);
+        GridPane.setConstraints(txtMasterCheckMg, 3, 6);
         GridPane.setConstraints(lblManganese, 0, 7);
-        GridPane.setConstraints(txtManganeseMinimum, 1, 7);
-        GridPane.setConstraints(txtManganeseEquation, 2, 7);
-        GridPane.setConstraints(txtMnCheckValue, 3, 7);
+        GridPane.setConstraints(txtConversionMinimumMn, 1, 7);
+        GridPane.setConstraints(txtConversionEquationMn, 2, 7);
+        GridPane.setConstraints(txtMasterCheckMn, 3, 7);
         GridPane.setConstraints(lblSodium, 0, 8);
-        GridPane.setConstraints(txtSodiumMinimum, 1, 8);
-        GridPane.setConstraints(txtSodiumEquation, 2, 8);
-        GridPane.setConstraints(txtNaCheckValue, 3, 8);
+        GridPane.setConstraints(txtConversionMinimumNa, 1, 8);
+        GridPane.setConstraints(txtConversionEquationNa, 2, 8);
+        GridPane.setConstraints(txtMasterCheckNa, 3, 8);
         GridPane.setConstraints(lblSulfur, 0, 9);
-        GridPane.setConstraints(txtSulfurMinimum, 1, 9);
-        GridPane.setConstraints(txtSulfurEquation, 2, 9);
-        GridPane.setConstraints(txtSCheckValue, 3, 9);
+        GridPane.setConstraints(txtConversionMinimumS, 1, 9);
+        GridPane.setConstraints(txtConversionEquationS, 2, 9);
+        GridPane.setConstraints(txtMasterCheckS, 3, 9);
         GridPane.setConstraints(lblZinc, 0, 10);
-        GridPane.setConstraints(txtZincMinimum, 1, 10);
-        GridPane.setConstraints(txtZincEquation, 2, 10);
-        GridPane.setConstraints(txtZnCheckValue, 3, 10);
+        GridPane.setConstraints(txtConversionMinimumZn, 1, 10);
+        GridPane.setConstraints(txtConversionEquationZn, 2, 10);
+        GridPane.setConstraints(txtMasterCheckZn, 3, 10);
 
         /*====================
         Add Items to GridPane #1
         ====================*/
         gridPane1.getChildren().addAll(lblBoron, lblCalcium, lblConversionEquations, lblCopper, lblElements, lblIron, lblMagnesium, lblManganese, lblMinimums, lblPotassium, lblSodium, lblSulfur, lblZinc, lblCheckValues,
-                txtBoronMinimum, txtCalciumMinimum, txtCopperMinimum, txtIronMinimum,
-                txtPotassiumMinimum, txtMagnesiumMinimum, txtManganeseMinimum,
-                txtSodiumMinimum, txtSulfurMinimum, txtZincMinimum,
-                txtBoronEquation, txtCalciumEquation, txtCopperEquation,
-                txtIronEquation, txtPotassiumEquation, txtMagnesiumEquation,
-                txtManganeseEquation, txtSodiumEquation, txtSulfurEquation,
-                txtZincEquation, txtBCheckValue, txtCaCheckValue, txtCuCheckValue,
-                txtFeCheckValue, txtKCheckValue, txtMgCheckValue, txtMnCheckValue, 
-                txtNaCheckValue, txtSCheckValue, txtZnCheckValue);
+                txtConversionMinimumB, txtConversionMinimumCa, txtConversionMinimumCu, txtConversionMinimumFe,
+                txtConversionMinimumK, txtConversionMinimumMg, txtConversionMinimumMn,
+                txtConversionMinimumNa, txtConversionMinimumS, txtConversionMinimumZn,
+                txtConversionEquationB, txtConversionEquationCa, txtConversionEquationCu,
+                txtConversionEquationFe, txtConversionEquationK, txtConversionEquationMg,
+                txtConversionEquationMn, txtConversionEquationNa, txtConversionEquationS,
+                txtConversionEquationZn, txtMasterCheckB, txtMasterCheckCa, txtMasterCheckCu,
+                txtMasterCheckFe, txtMasterCheckK, txtMasterCheckMg, txtMasterCheckMn, 
+                txtMasterCheckNa, txtMasterCheckS, txtMasterCheckZn);
 
         /*====================
         GridPane #2 (Dilution Factor, Sulfur to Sulfate Multiplier, and buttons
@@ -220,7 +223,7 @@ public class Config {
         Grid Pane #2 TextFields
         ====================*/
         txtDilutionFactor = new TextField(props.getProperty("dilutionFactor"));
-        txtSulfurToSulfateMultiplier = new TextField(props.getProperty("sulfurToSulfate"));
+        txtSulfurToSulfate = new TextField(props.getProperty("sulfurToSulfate"));
 
         /*====================
         Grid Pane #2 Buttons
@@ -247,14 +250,14 @@ public class Config {
         GridPane.setConstraints(lblDilutionFactor, 0, 0);
         GridPane.setConstraints(txtDilutionFactor, 1, 0);
         GridPane.setConstraints(lblSulfurToSulfateMultiplier, 0, 1);
-        GridPane.setConstraints(txtSulfurToSulfateMultiplier, 1, 1);
+        GridPane.setConstraints(txtSulfurToSulfate, 1, 1);
         GridPane.setConstraints(btnSave, 0, 2);
         GridPane.setConstraints(btnCancel, 1, 2);
 
         /*====================
         Add items to GridPane #2
         ====================*/
-        gridPane2.getChildren().addAll(lblDilutionFactor, lblSulfurToSulfateMultiplier, txtDilutionFactor, txtSulfurToSulfateMultiplier,
+        gridPane2.getChildren().addAll(lblDilutionFactor, lblSulfurToSulfateMultiplier, txtDilutionFactor, txtSulfurToSulfate,
                 btnSave, btnCancel);
 
         /*====================
@@ -284,132 +287,261 @@ public class Config {
     public void attemptSave(PropertyWorker propWorker) throws IOException{
         propWorker.saveProperties(this);
     }
-    public String getBoronMinimum() {
-        return txtBoronMinimum.getText();
+    
+    /**
+     * returns the conversion minimum for Boron
+     * @return String
+     */
+    public String getConversionMinimumB() {
+        return txtConversionMinimumB.getText();
     }
 
-    public String getBoronEquation() {
-        return txtBoronEquation.getText();
+    /**
+     * returns the conversion equation for Boron
+     * @return String
+     */
+    public String getConversionEquationB() {
+        return txtConversionEquationB.getText();
     }
 
-    public String getCalciumMinimum() {
-        return txtCalciumMinimum.getText();
+    /**
+     * returns the conversion minimum for Calcium
+     * @return String
+     */
+    public String getConversionMinimumCa() {
+        return txtConversionMinimumCa.getText();
     }
 
-    public String getCalciumEquation() {
-        return txtCalciumEquation.getText();
+    /**
+     * returns the conversion equation for Calcium
+     * @return String
+     */
+    public String getConversionEquationCa() {
+        return txtConversionEquationCa.getText();
     }
 
-    public String getCopperMinimum() {
-        return txtCopperMinimum.getText();
+    /**
+     * returns the conversion minimum for Copper
+     * @return String
+     */
+    public String getConversionMinimumCu() {
+        return txtConversionMinimumCu.getText();
     }
 
-    public String getCopperEquation() {
-        return txtCopperEquation.getText();
+    /**
+     * returns the conversion equation for Copper
+     * @return String
+     */
+    public String getConversionEquationCu() {
+        return txtConversionEquationCu.getText();
     }
 
-    public String getIronMinimum() {
-        return txtIronMinimum.getText();
+    /**
+     * returns the conversion minimum for Iron
+     * @return String
+     */
+    public String getConversionMinimumFe() {
+        return txtConversionMinimumFe.getText();
     }
 
-    public String getIronEquation() {
-        return txtIronEquation.getText();
+    /**
+     * returns the conversion equation for Iron
+     * @return String
+     */
+    public String getConversionEquationFe() {
+        return txtConversionEquationFe.getText();
     }
 
-    public String getPotassiumMinimum() {
-        return txtPotassiumMinimum.getText();
+    /**
+     * returns the conversion minimum for Potassium
+     * @return String
+     */
+    public String getConversionMinimumK() {
+        return txtConversionMinimumK.getText();
     }
 
-    public String getPotassiumEquation() {
-        return txtPotassiumEquation.getText();
+    /**
+     * returns the conversion equation for Potassium
+     * @return String
+     */
+    public String getConversionEquationK() {
+        return txtConversionEquationK.getText();
     }
 
-    public String getMagnesiumMinimum() {
-        return txtMagnesiumMinimum.getText();
+    /**
+     * returns the conversion minimum for Magnesium
+     * @return String
+     */
+    public String getConversionMinimumMg() {
+        return txtConversionMinimumMg.getText();
     }
 
-    public String getMagnesiumEquation() {
-        return txtMagnesiumEquation.getText();
+    /**
+     * returns the conversion equation for Magnesium
+     * @return String
+     */
+    public String getConversionEquationMg() {
+        return txtConversionEquationMg.getText();
     }
 
-    public String getManganeseMinimum() {
-        return txtManganeseMinimum.getText();
+    /**
+     * returns the conversion minimum for Manganese
+     * @return String
+     */
+    public String getConversionMinimumMn() {
+        return txtConversionMinimumMn.getText();
     }
 
-    public String getManganeseEquation() {
-        return txtManganeseEquation.getText();
+    /**
+     * returns the conversion equation for Manganese
+     * @return String
+     */
+    public String getConversionEquationMn() {
+        return txtConversionEquationMn.getText();
     }
 
-    public String getSodiumMinimum() {
-        return txtSodiumMinimum.getText();
+    /**
+     * returns the conversion conversion minimum for Sodium
+     * @return String
+     */
+    public String getConversionMinimumNa() {
+        return txtConversionMinimumNa.getText();
     }
 
-    public String getSodiumEquation() {
-        return txtSodiumEquation.getText();
+    /**
+     * returns the conversion equation for Sodium
+     * @return String
+     */
+    public String getConversionEquationNa() {
+        return txtConversionEquationNa.getText();
     }
 
-    public String getSulfurMinimum() {
-        return txtSulfurMinimum.getText();
+    /**
+     * returns the conversion minimum for Sulfur
+     * @return String
+     */
+    public String getConversionMinimumS() {
+        return txtConversionMinimumS.getText();
     }
 
-    public String getSulfurEquation() {
-        return txtSulfurEquation.getText();
+    /**
+     * returns the conversion equation for Sulfur
+     * @return String
+     */
+    public String getConversionEquationS() {
+        return txtConversionEquationS.getText();
     }
 
-    public String getZincMinimum() {
-        return txtZincMinimum.getText();
+    /**
+     * returns the conversion minimum for Zinc
+     * @return String
+     */
+    public String getConversionMinimumZn() {
+        return txtConversionMinimumZn.getText();
     }
 
-    public String getZincEquation() {
-        return txtZincEquation.getText();
+    /**
+     * returns the conversion equation for Zinc
+     * @return String
+     */
+    public String getConversionEquationZn() {
+        return txtConversionEquationZn.getText();
     }
 
+    /**
+     * returns the Dilution Factor
+     * @return String
+     */
     public String getDilutionFactor() {
         return txtDilutionFactor.getText();
     }
 
-    public String getSulfurToSulfateMultiplier() {
-        return txtSulfurToSulfateMultiplier.getText();
+    /**
+     * returns the Sulfur to Sulfate multiplier
+     * @return String
+     */
+    public String getSulfurToSulfate() {
+        return txtSulfurToSulfate.getText();
     }
 
-    public String getBCheckValue() {
-        return txtBCheckValue.getText();
+    /**
+     * returns the master check value for Boron
+     * @return String
+     */
+    public String getMasterCheckB() {
+        return txtMasterCheckB.getText();
     }
 
-    public String getCaCheckValue() {
-        return txtCaCheckValue.getText();
+    /**
+     * returns the master check value for Calcium
+     * @return String
+     */
+    public String getMasterCheckCa() {
+        return txtMasterCheckCa.getText();
     }
 
-    public String getCuCheckValue() {
-        return txtCuCheckValue.getText();
+    /**
+     * returns the master check value for Copper
+     * @return String
+     */
+    public String getMasterCheckCu() {
+        return txtMasterCheckCu.getText();
     }
 
-    public String getFeCheckValue() {
-        return txtFeCheckValue.getText();
+    /**
+     * returns the master check value for Iron
+     * @return String
+     */
+    public String getMasterCheckFe() {
+        return txtMasterCheckFe.getText();
     }
 
-    public String getKCheckValue() {
-        return txtKCheckValue.getText();
+    /**
+     * returns the master check value for Potassium
+     * @return String
+     */
+    public String getMasterCheckK() {
+        return txtMasterCheckK.getText();
     }
 
-    public String getMgCheckValue() {
-        return txtMgCheckValue.getText();
+    /**
+     * returns the master check value for Magnesium
+     * @return String
+     */
+    public String getMasterCheckMg() {
+        return txtMasterCheckMg.getText();
     }
 
-    public String getMnCheckValue() {
-        return txtMnCheckValue.getText();
+    /**
+     * returns the master check value for Manganese
+     * @return String
+     */
+    public String getMasterCheckMn() {
+        return txtMasterCheckMn.getText();
     }
 
-    public String getNaCheckValue() {
-        return txtNaCheckValue.getText();
+    /**
+     * returns the master check value for Sodium
+     * @return String
+     */
+    public String getMasterCheckNa() {
+        return txtMasterCheckNa.getText();
     }
 
-    public String getSCheckValue() {
-        return txtSCheckValue.getText();
+    /**
+     * returns the master check value for Sulfur
+     * @return String
+     */
+    public String getMasterCheckS() {
+        return txtMasterCheckS.getText();
     }
 
-    public String getZnCheckValue() {
-        return txtZnCheckValue.getText();
+    /**
+     * returns the master check value for Zinc
+     * @return String
+     */
+    public String getMasterCheckZn() {
+        return txtMasterCheckZn.getText();
     }
     
     

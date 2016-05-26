@@ -54,39 +54,38 @@ public class PropertyWorker {
     public void saveProperties(Config config) throws IOException {
         String verifyMessage = verifyProperties(config);
         if (verifyMessage.isEmpty()) {
-            
-            properties.setProperty("conversionEquationB", config.getBoronEquation());
-            properties.setProperty("conversionMinimumB", config.getBoronMinimum());
-            properties.setProperty("masterCheckB", config.getBCheckValue());
-            properties.setProperty("conversionEquationCa", config.getCalciumEquation());
-            properties.setProperty("conversionMinimumCa", config.getCalciumMinimum());
-            properties.setProperty("masterCheckCa", config.getCaCheckValue());
-            properties.setProperty("conversionEquationCu", config.getCopperEquation());
-            properties.setProperty("conversionMinimumCu", config.getCopperMinimum());
-            properties.setProperty("masterCheckCu", config.getCuCheckValue());
-            properties.setProperty("conversionEquationFe", config.getIronEquation());
-            properties.setProperty("conversionMinimumFe", config.getIronMinimum());
-            properties.setProperty("masterCheckFe", config.getFeCheckValue());
-            properties.setProperty("conversionEquationK", config.getPotassiumEquation());
-            properties.setProperty("conversionMinimumK", config.getPotassiumMinimum());
-            properties.setProperty("masterCheckK", config.getKCheckValue());
-            properties.setProperty("conversionEquationMg", config.getMagnesiumEquation());
-            properties.setProperty("conversionMinimumMg", config.getMagnesiumMinimum());
-            properties.setProperty("masterCheckMg", config.getMgCheckValue());
-            properties.setProperty("conversionEquationMn", config.getManganeseEquation());
-            properties.setProperty("conversionMinimumMn", config.getManganeseMinimum());
-            properties.setProperty("masterCheckMn", config.getMnCheckValue());
-            properties.setProperty("conversionEquationNa", config.getSodiumEquation());
-            properties.setProperty("conversionMinimumNa", config.getSodiumMinimum());
-            properties.setProperty("masterCheckNa", config.getNaCheckValue());
-            properties.setProperty("conversionEquationS", config.getSulfurEquation());
-            properties.setProperty("conversionMinimumS", config.getSulfurMinimum());
-            properties.setProperty("masterCheckS", config.getSCheckValue());
-            properties.setProperty("conversionEquationZn", config.getZincEquation());
-            properties.setProperty("conversionMinimumZn", config.getZincMinimum());
-            properties.setProperty("masterCheckZn", config.getZnCheckValue());
+            properties.setProperty("conversionEquationB", config.getConversionEquationB());
+            properties.setProperty("conversionMinimumB", config.getConversionMinimumB());
+            properties.setProperty("masterCheckB", config.getMasterCheckB());
+            properties.setProperty("conversionEquationCa", config.getConversionEquationCa());
+            properties.setProperty("conversionMinimumCa", config.getConversionMinimumCa());
+            properties.setProperty("masterCheckCa", config.getMasterCheckCa());
+            properties.setProperty("conversionEquationCu", config.getConversionEquationCu());
+            properties.setProperty("conversionMinimumCu", config.getConversionMinimumCu());
+            properties.setProperty("masterCheckCu", config.getMasterCheckCu());
+            properties.setProperty("conversionEquationFe", config.getConversionEquationFe());
+            properties.setProperty("conversionMinimumFe", config.getConversionMinimumFe());
+            properties.setProperty("masterCheckFe", config.getMasterCheckFe());
+            properties.setProperty("conversionEquationK", config.getConversionEquationK());
+            properties.setProperty("conversionMinimumK", config.getConversionMinimumK());
+            properties.setProperty("masterCheckK", config.getMasterCheckK());
+            properties.setProperty("conversionEquationMg", config.getConversionEquationMg());
+            properties.setProperty("conversionMinimumMg", config.getConversionMinimumMg());
+            properties.setProperty("masterCheckMg", config.getMasterCheckMg());
+            properties.setProperty("conversionEquationMn", config.getConversionEquationMn());
+            properties.setProperty("conversionMinimumMn", config.getConversionMinimumMn());
+            properties.setProperty("masterCheckMn", config.getMasterCheckMn());
+            properties.setProperty("conversionEquationNa", config.getConversionEquationNa());
+            properties.setProperty("conversionMinimumNa", config.getConversionMinimumNa());
+            properties.setProperty("masterCheckNa", config.getMasterCheckNa());
+            properties.setProperty("conversionEquationS", config.getConversionEquationS());
+            properties.setProperty("conversionMinimumS", config.getConversionMinimumS());
+            properties.setProperty("masterCheckS", config.getMasterCheckS());
+            properties.setProperty("conversionEquationZn", config.getConversionEquationZn());
+            properties.setProperty("conversionMinimumZn", config.getConversionMinimumZn());
+            properties.setProperty("masterCheckZn", config.getMasterCheckZn());
             properties.setProperty("dilutionFactor", config.getDilutionFactor());
-            properties.setProperty("sulfurToSulfate", config.getSulfurToSulfateMultiplier());
+            properties.setProperty("sulfurToSulfate", config.getSulfurToSulfate());
             
             File f = new File(fileLocation);
             OutputStream out = new FileOutputStream(f);
@@ -97,58 +96,63 @@ public class PropertyWorker {
         }
     }
 
+    /**
+     * Determines if all of the properties have acceptable values
+     * @param config the config class with all of the properties
+     * @return Boolean
+     */
     private String verifyProperties(Config config) {
         StringBuilder message = new StringBuilder();
         /*====================
         Ensure all minimums are doubles
         ====================*/
         try {
-            Double.parseDouble(config.getBoronMinimum());
+            Double.parseDouble(config.getConversionMinimumB());
         } catch (NumberFormatException nfe) {
             message.append("Minimum for Boron is not a valid number.\n");
         }
         try {
-            Double.parseDouble(config.getCalciumMinimum());
+            Double.parseDouble(config.getConversionMinimumCa());
         } catch (NumberFormatException nfe) {
             message.append("Minimum for Calcium is not a valid number.\n");
         }
         try {
-            Double.parseDouble(config.getCopperMinimum());
+            Double.parseDouble(config.getConversionMinimumCu());
         } catch (NumberFormatException nfe) {
             message.append("Minimum for Copper is not a valid number.\n");
         }
         try {
-            Double.parseDouble(config.getIronMinimum());
+            Double.parseDouble(config.getConversionMinimumFe());
         } catch (NumberFormatException nfe) {
             message.append("Minimum for Iron is not a valid number.\n");
         }
         try {
-            Double.parseDouble(config.getPotassiumMinimum());
+            Double.parseDouble(config.getConversionMinimumK());
         } catch (NumberFormatException nfe) {
             message.append("Minimum for Potassium is not a valid number.\n");
         }
         try {
-            Double.parseDouble(config.getMagnesiumMinimum());
+            Double.parseDouble(config.getConversionMinimumMg());
         } catch (NumberFormatException nfe) {
             message.append("Minimum for Magnesium is not a valid number.\n");
         }
         try {
-            Double.parseDouble(config.getManganeseMinimum());
+            Double.parseDouble(config.getConversionMinimumMn());
         } catch (NumberFormatException nfe) {
             message.append("Minimum for Manganese is not a valid number.\n");
         }
         try {
-            Double.parseDouble(config.getSodiumMinimum());
+            Double.parseDouble(config.getConversionMinimumNa());
         } catch (NumberFormatException nfe) {
             message.append("Minimum for Sodium is not a valid number.\n");
         }
         try {
-            Double.parseDouble(config.getSulfurMinimum());
+            Double.parseDouble(config.getConversionMinimumS());
         } catch (NumberFormatException nfe) {
             message.append("Minimum for Sulfur is not a valid number.\n");
         }
         try {
-            Double.parseDouble(config.getZincMinimum());
+            Double.parseDouble(config.getConversionMinimumZn());
         } catch (NumberFormatException nfe) {
             message.append("Minimum for Zinc is not a valid number.\n");
         }
@@ -156,43 +160,43 @@ public class PropertyWorker {
         /*====================
         Ensure all equations have the word 'VALUE' in them
         ====================*/
-        if (config.getBoronEquation().contains("VALUE")) {
+        if (config.getConversionEquationB().contains("VALUE")) {
         } else {
             message.append("The equation for Boron must have the term 'VALUE' in it.\n");
         }
-        if (config.getCalciumEquation().contains("VALUE")) {
+        if (config.getConversionEquationCa().contains("VALUE")) {
         } else {
             message.append("The equation for Calcium must have the term 'VALUE' in it.\n");
         }
-        if (config.getCopperEquation().contains("VALUE")) {
+        if (config.getConversionEquationCu().contains("VALUE")) {
         } else {
             message.append("The equation for Copper must have the term 'VALUE' in it.\n");
         }
-        if (config.getIronEquation().contains("VALUE")) {
+        if (config.getConversionEquationFe().contains("VALUE")) {
         } else {
             message.append("The equation for Iron must have the term 'VALUE' in it.\n");
         }
-        if (config.getPotassiumEquation().contains("VALUE")) {
+        if (config.getConversionEquationK().contains("VALUE")) {
         } else {
             message.append("The equation for Potassium must have the term 'VALUE' in it.\n");
         }
-        if (config.getMagnesiumEquation().contains("VALUE")) {
+        if (config.getConversionEquationMg().contains("VALUE")) {
         } else {
             message.append("The equation for Magnesium must have the term 'VALUE' in it.\n");
         }
-        if (config.getManganeseEquation().contains("VALUE")) {
+        if (config.getConversionEquationMn().contains("VALUE")) {
         } else {
             message.append("The equation for Manganese must have the term 'VALUE' in it.\n");
         }
-        if (config.getSodiumEquation().contains("VALUE")) {
+        if (config.getConversionEquationNa().contains("VALUE")) {
         } else {
             message.append("The equation for Sodium must have the term 'VALUE' in it.\n");
         }
-        if (config.getSulfurEquation().contains("VALUE")) {
+        if (config.getConversionEquationS().contains("VALUE")) {
         } else {
             message.append("The equation for Sulfur must have the term 'VALUE' in it.\n");
         }
-        if (config.getZincEquation().contains("VALUE")) {
+        if (config.getConversionEquationZn().contains("VALUE")) {
         } else {
             message.append("The equation for Zinc must have the term 'VALUE' in it.\n");
         }
@@ -201,52 +205,52 @@ public class PropertyWorker {
         Ensure all check values are doubles
         ====================*/
         try{
-            Double.parseDouble(config.getBCheckValue());
+            Double.parseDouble(config.getMasterCheckB());
         }catch(NumberFormatException nfe){
             message.append("Check value for Boron is not a valid number.\n");
         }
         try{
-            Double.parseDouble(config.getCaCheckValue());
+            Double.parseDouble(config.getMasterCheckCa());
         }catch(NumberFormatException nfe){
             message.append("Check value for Calcium is not a valid number.\n");
         }
         try{
-            Double.parseDouble(config.getCuCheckValue());
+            Double.parseDouble(config.getMasterCheckCu());
         }catch(NumberFormatException nfe){
             message.append("Check value for Copper is not a valid number.\n");
         }
         try{
-            Double.parseDouble(config.getFeCheckValue());
+            Double.parseDouble(config.getMasterCheckFe());
         }catch(NumberFormatException nfe){
             message.append("Check value for Iron is not a valid number.\n");
         }
         try{
-            Double.parseDouble(config.getKCheckValue());
+            Double.parseDouble(config.getMasterCheckK());
         }catch(NumberFormatException nfe){
             message.append("Check value for Potassium is not a valid number.\n");
         }
         try{
-            Double.parseDouble(config.getMgCheckValue());
+            Double.parseDouble(config.getMasterCheckMg());
         }catch(NumberFormatException nfe){
             message.append("Check value for Magnesium is not a valid number.\n");
         }
         try{
-            Double.parseDouble(config.getMnCheckValue());
+            Double.parseDouble(config.getMasterCheckMn());
         }catch(NumberFormatException nfe){
             message.append("Check value for Manganese is not a valid number.\n");
         }
         try{
-            Double.parseDouble(config.getNaCheckValue());
+            Double.parseDouble(config.getMasterCheckNa());
         }catch(NumberFormatException nfe){
             message.append("Check value for Sodium is not a valid number.\n");
         }
         try{
-            Double.parseDouble(config.getSCheckValue());
+            Double.parseDouble(config.getMasterCheckS());
         }catch(NumberFormatException nfe){
             message.append("Check value for Sulfur is not a valid number.\n");
         }
         try{
-            Double.parseDouble(config.getZnCheckValue());
+            Double.parseDouble(config.getMasterCheckZn());
         }catch(NumberFormatException nfe){
             message.append("Check value for Zinc is not a valid number.\n");
         }
@@ -259,7 +263,7 @@ public class PropertyWorker {
             message.append("The dilution factor must be a valid number.");
         }
         try{
-            Double.parseDouble(config.getSulfurToSulfateMultiplier());
+            Double.parseDouble(config.getSulfurToSulfate());
         }catch(NumberFormatException nfe){
             message.append("The Sulfur To Sulfate Multipler must be a valid number.");
         }
